@@ -1,0 +1,27 @@
+<form #myForm="ngForm" ngForm (submit)="submitForm()">
+
+  <div>
+    <label>Email: </label>
+    <input type="email" name="email" required [(ngModel)]="data.email">
+  </div>
+
+  <div>
+    <label>Password: </label>
+    <input #pass="ngModel" type="password" name="password" required minlength="4" [(ngModel)]="data.password">
+    <span *ngIf="pass.invalid">
+      <span *ngIf="pass.errors?.['required']">La password non può essere vuota!</span>
+      <span *ngIf="pass.errors?.['minlength']">La password deve avere almeno 4 caratteri!</span>
+    </span>
+  </div>
+
+  <div>
+    <label>Iscrizione alla newsletter: </label>
+    <input type="checkbox" name="newsletter" value="cazzo" [(ngModel)]="data.newsletter">
+  </div>
+
+  <div>
+    <input type="submit" [disabled]="myForm.form.invalid">
+    <span *ngIf="myForm.form.invalid">Compila i dati in modo corretto!</span>
+  </div>
+
+</form>
